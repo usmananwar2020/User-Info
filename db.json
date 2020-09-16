@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "name": "Muhammad Usman",
+      "username": "Usman@",
+      "email": "muhammadusman1531995@gmail.com",
+      "phone": "0334-9514525",
+      "website": "LocalHost:3000",
+      "id": 1
+    },
+    {
+      "name": "Hayat Khan",
+      "username": "Safi@",
+      "email": "heyatkhan111@gmail.com",
+      "phone": "03345656578",
+      "website": "www.github.com",
+      "id": 2
+    },
+    {
+      "name": "Muhammad Omer",
+      "username": "omeromer",
+      "email": "omer@gmail.com",
+      "phone": "03365037203",
+      "website": "https://pixabay.com/accounts/activate/18013370/dd73167ec8fd9ec8f5a8/",
+      "id": 3
+    }
+  ]
+}
