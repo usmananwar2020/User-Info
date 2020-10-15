@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom"
+import CurrentDate from './CurrentDate';
+import Button from '@material-ui/core/Button';
 function AddUser() {
     let history = useHistory();
     const [user, setUser] = useState({
@@ -9,21 +11,28 @@ function AddUser() {
         email: "",
         phone: "",
         website: ""
-
     });
+    const [date, setDate] = useState('');
 
     const { name, username, email, phone, website } = user;
 
     const onInputChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
     }
-    const onSubmit = async(e) => {
+    const addDate=()=>{
+        setUser({
+            ...user, ['dateCreated']:date,
+            ...user, ['dateModified']:date
+        })
+    }
+    const onSubmit = async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:3001/users", user);
         history.push('/');
     }
     return (
         <div className="container">
+            <CurrentDate setDate={setDate} />
             <div className="w-75 mx-auto shadow p-5">
                 <h2 className="text-center mb-4">Add User</h2>
                 <form onSubmit={e => onSubmit(e)}>
@@ -35,6 +44,7 @@ function AddUser() {
                             name="name"
                             value={name}
                             onChange={e => onInputChange(e)}
+                            required="required"
                         />
                     </div>
                     <div className="form-group">
@@ -45,6 +55,7 @@ function AddUser() {
                             name="username"
                             value={username}
                             onChange={e => onInputChange(e)}
+                            required="required"
                         />
                     </div>
                     <div className="form-group">
@@ -55,6 +66,7 @@ function AddUser() {
                             name="email"
                             value={email}
                             onChange={e => onInputChange(e)}
+                            required="required"
                         />
                     </div>
                     <div className="form-group">
@@ -65,6 +77,7 @@ function AddUser() {
                             name="phone"
                             value={phone}
                             onChange={e => onInputChange(e)}
+                            required="required"
                         />
                     </div>
                     <div className="form-group">
@@ -75,9 +88,10 @@ function AddUser() {
                             name="website"
                             value={website}
                             onChange={e => onInputChange(e)}
+                            required="required"
                         />
                     </div>
-                    <button className="btn btn-primary btn-block">Add User</button>
+                    <Button type="submit" variant="contained" style={{width: '100%', fontSize:'20px'}} color="primary" onClick={()=> addDate()} >Add User</Button>
                 </form>
             </div>
         </div>

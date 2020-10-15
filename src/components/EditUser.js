@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useHistory, useParams } from "react-router-dom"
+import CurrentDate from './CurrentDate';
 function EditUser() {
     let history = useHistory();
     const { id } = useParams();
@@ -12,13 +13,18 @@ function EditUser() {
         website: ""
 
     });
-
+    const [date, setDate] = useState('');
     const { name, username, email, phone, website } = user;
     useEffect(() => {
         loadUser();
     }, [])
     const onInputChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
+    }
+    const addDate = () => {
+        setUser({
+            ...user, ['dateModified']: date
+        })
     }
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -31,13 +37,14 @@ function EditUser() {
                 setUser(res.data);
                 console.log(res.data)
             })
-            .catch((error)=>{
-                console.log("error======",error);
+            .catch((error) => {
+                console.log("error======", error);
             })
 
     }
     return (
         <div className="container">
+            <CurrentDate setDate={setDate} />
             <div className="w-75 mx-auto shadow p-5">
                 <h2 className="text-center mb-4">Edit User</h2>
                 <form onSubmit={e => onSubmit(e)}>
@@ -49,6 +56,7 @@ function EditUser() {
                             name="name"
                             value={name}
                             onChange={e => onInputChange(e)}
+                            required="required"
                         />
                     </div>
                     <div className="form-group">
@@ -59,6 +67,7 @@ function EditUser() {
                             name="username"
                             value={username}
                             onChange={e => onInputChange(e)}
+                            required="required"
                         />
                     </div>
                     <div className="form-group">
@@ -69,6 +78,7 @@ function EditUser() {
                             name="email"
                             value={email}
                             onChange={e => onInputChange(e)}
+                            required="required"
                         />
                     </div>
                     <div className="form-group">
@@ -79,6 +89,7 @@ function EditUser() {
                             name="phone"
                             value={phone}
                             onChange={e => onInputChange(e)}
+                            required="required"
                         />
                     </div>
                     <div className="form-group">
@@ -89,9 +100,10 @@ function EditUser() {
                             name="website"
                             value={website}
                             onChange={e => onInputChange(e)}
+                            required="required"
                         />
                     </div>
-                    <button className="btn btn-warning btn-block" to="/">Save Change</button>
+                    <button className="btn btn-warning btn-block" onClick={() => addDate()} to="/">Save Change</button>
                 </form>
             </div>
         </div>

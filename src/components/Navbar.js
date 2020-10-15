@@ -4,7 +4,7 @@ function Navbar() {
     return (
         <>
             <NavLink className="navbar navbar-expand-lg text-primary text-decoration-none" to="/">
-                <h2>USER INFORMATION</h2>
+                <h2>Contact Manager</h2>
             </NavLink>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
 
@@ -15,15 +15,15 @@ function Navbar() {
                                 <NavLink className="nav-link" exact to="/">Home </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="./About">About</NavLink>
+                                <NavLink className="nav-link" exact to="/About">About</NavLink>
                             </li>
 
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="./Contact">Contact</NavLink>
+                                <NavLink className="nav-link" exact to="/Contact">Contact</NavLink>
                             </li>
                         </ul>
                     </div>
-                    <Link className="btn btn-outline-light" to="./addUser">Add User</Link>
+                    <Link className="btn btn-outline-light" exact to="/addUser">Add User</Link>
                 </div>
             </nav>
         </>

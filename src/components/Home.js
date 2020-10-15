@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 function Home() {
   const [user, setUser] = useState([]);
 
@@ -25,16 +26,17 @@ function Home() {
     alert("Uer has been deleted");
   }
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="py-4">
         <h1>HOME</h1>
-        <table class="table border shadow">
-          <thead class="thead-dark">
+        <table className="table border shadow">
+          <thead className="thead-dark">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th scope="col">Username</th>
               <th scope="col">Email</th>
+              <th scope="col">Date Created </th>
+              <th scope="col">Date Modified </th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -44,12 +46,13 @@ function Home() {
                 <tr>
                   <th>{index + 1}</th>
                   <td>{user.name}</td>
-                  <td>{user.username}</td>
                   <td>{user.email}</td>
+                  <td>{user.dateCreated}</td>
+                  <td>{user.dateModified}</td>
                   <td>
-                    <Link className="btn btn-primary mr-2" to={`./viewUser/${user.id}`}>View</Link>
-                    <Link className="btn btn-outline-primary mr-2" to={`./EditUser/${user.id}`}>Edit</Link>
-                    <Link className="btn btn-danger" onClick={() => deleteUser(user.id)}>Delete</Link>
+                      <Link style={{textDecoration: 'none'}} to={`./viewUser/${user.id}`}><Button variant="contained" color="primary">View</Button></Link>
+                      <Link style={{textDecoration: 'none'}} to={`./EditUser/${user.id}`}> <Button variant="contained">Edit</Button></Link>
+                      <Link style={{textDecoration: 'none'}} onClick={() => deleteUser(user.id)}> <Button variant="contained" color="secondary">Delete</Button></Link>
                   </td>
                 </tr>
               ))
